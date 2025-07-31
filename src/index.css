@@ -2,23 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Romantic Love Website Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Romantic Color Palette */
+    --background: 340 100% 98%;
+    --foreground: 340 50% 20%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 340 100% 99%;
+    --card-foreground: 340 50% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 340 100% 99%;
+    --popover-foreground: 340 50% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 340 80% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 340 90% 75%;
+
+    /* Romantic Gradients */
+    --gradient-romantic: linear-gradient(135deg, hsl(340, 80%, 85%), hsl(280, 70%, 85%), hsl(220, 60%, 90%));
+    --gradient-heart: linear-gradient(45deg, hsl(340, 80%, 70%), hsl(320, 70%, 80%));
+    --gradient-dreamy: linear-gradient(180deg, hsl(340, 100%, 98%), hsl(280, 50%, 95%));
+    --gradient-magical: linear-gradient(135deg, hsl(280, 60%, 90%), hsl(220, 60%, 95%), hsl(200, 70%, 95%));
+
+    /* Love Theme Colors */
+    --love-pink: 340 80% 75%;
+    --love-lavender: 280 60% 85%;
+    --love-blue: 220 60% 90%;
+    --love-peach: 20 100% 90%;
+    --love-coral: 10 80% 80%;
+
+    /* Shadows & Effects */
+    --shadow-romantic: 0 20px 60px -10px hsl(340 80% 60% / 0.3);
+    --shadow-heart: 0 10px 30px -5px hsl(340 70% 70% / 0.4);
+    --shadow-dreamy: 0 8px 25px -8px hsl(280 60% 70% / 0.2);
+    --glow-romantic: 0 0 40px hsl(340 80% 75% / 0.6);
+    --glow-soft: 0 0 20px hsl(340 60% 80% / 0.3);
+
+    /* Animations */
+    --transition-romantic: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-heart: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -101,5 +126,171 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-dreamy);
+    min-height: 100vh;
+  }
+}
+
+/* Custom Romantic Animations & Effects */
+@layer utilities {
+  .heart-pulse {
+    animation: heartPulse 2s ease-in-out infinite;
+  }
+  
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .sparkle-animation {
+    animation: sparkle 2s linear infinite;
+  }
+  
+  .typewriter {
+    overflow: hidden;
+    border-right: 3px solid hsl(var(--primary));
+    animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+  }
+  
+  .romantic-shadow {
+    box-shadow: var(--shadow-romantic);
+  }
+  
+  .heart-shadow {
+    box-shadow: var(--shadow-heart);
+  }
+  
+  .romantic-glow {
+    box-shadow: var(--glow-romantic);
+  }
+  
+  .soft-glow {
+    box-shadow: var(--glow-soft);
+  }
+  
+  .love-gradient {
+    background: var(--gradient-romantic);
+  }
+  
+  .heart-gradient {
+    background: var(--gradient-heart);
+  }
+  
+  .magical-gradient {
+    background: var(--gradient-magical);
+  }
+  
+  .transition-romantic {
+    transition: var(--transition-romantic);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+  
+  .floating-hearts::before {
+    content: "💕";
+    position: absolute;
+    animation: floatingHearts 4s linear infinite;
+    opacity: 0;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); filter: brightness(1.2); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--primary)); }
+}
+
+@keyframes floatingHearts {
+  0% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceInHeart {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.bounce-in-heart {
+  animation: bounceInHeart 0.8s ease-out forwards;
+}
+
+/* Fireworks and confetti animations */
+@keyframes firework {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
   }
 }
